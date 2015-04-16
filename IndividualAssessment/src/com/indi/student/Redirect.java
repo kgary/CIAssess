@@ -1,6 +1,8 @@
-package com.src.scrum;
-
+package com.indi.student;
+import java.util.*;
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,13 +27,16 @@ public class Redirect extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		// TODO Auto-generated method stub
-		String projectName=request.getParameter("studentName");
-		System.out.println(projectName);
-		GetProjectInfo get= new GetProjectInfo();
-		get.getData(projectName);
+		ArrayList arr=new ArrayList();
+		RetrieveStudentNames obj=new RetrieveStudentNames();
+		arr=obj.getNames();
+		request.setAttribute("students", arr);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/AllWork.jsp");
+		rd.forward(request, response);
+		
 		
 	}
 

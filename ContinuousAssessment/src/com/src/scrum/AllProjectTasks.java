@@ -33,7 +33,8 @@ public class AllProjectTasks extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		String monthname=request.getParameter("month");
+		System.out.println("got month name" +monthname);
 		String projectName = request.getParameter("projectName");
 		GetProjectInfo getProjectInfo = new GetProjectInfo();
 		

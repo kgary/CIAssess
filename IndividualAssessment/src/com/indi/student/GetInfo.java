@@ -1,5 +1,6 @@
-package com.src.scrum;
-
+package com.indi.student;
+import java.io.*;
+import java.util.*;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,16 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Redirect
+ * Servlet implementation class GetInfo
  */
-@WebServlet("/Redirect")
-public class Redirect extends HttpServlet {
+@WebServlet("/GetInfo")
+public class GetInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Redirect() {
+    public GetInfo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -25,14 +26,15 @@ public class Redirect extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String projectName=request.getParameter("studentName");
-		System.out.println(projectName);
-		GetProjectInfo get= new GetProjectInfo();
-		get.getData(projectName);
-		
+		System.out.println("GetInfo hit");
+		String studentname=request.getParameter("studentName");
+		GetGitSWData obj=new GetGitSWData();
+		ArrayList studentsArray=new ArrayList();
+		PrintWriter pw=response.getWriter();
+		studentsArray=obj.getAllData(studentname);
+		pw.print(studentsArray);
 	}
 
 	/**
